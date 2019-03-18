@@ -47,3 +47,17 @@ class StatusCreateAPIView(generics.CreateAPIView):
 
     # def perform_create(self, serializer):
     #     serializer.save( user=self.request.user )
+
+
+class StatusDetailAPIView(generics.RetrieveAPIView):
+    permission_classes = []
+    authentication_classes = []
+    serializer_class = StatusSerializer
+    queryset = Status.objects.all()
+    lookup_field = 'id'  # 如果ookup_field沒define的話parmas值要用初始的pk
+
+    # 基本上做的事情和lookup_field依樣
+    # def get_object(self, *args, **kwargs):
+    #    kwargs = self.kwargs
+    #    kw_id = kwargs.get('id')
+    #    return Status.objects.get(id=kw_id)
