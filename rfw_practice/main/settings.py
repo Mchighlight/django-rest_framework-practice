@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework'
+    'rest_framework',
+    'status'
 ]
 
 MIDDLEWARE = [
@@ -76,10 +77,10 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 # Database
 DTABASE_ENGINE = 'django.db.backends.postgresql'
-DTABASE_NAME = os.getenv('POSTGRES_DB', 'backbone')
-DTABASE_USER = os.getenv('POSTGRES_USER', 'backbone')
-DTABASE_PASSWORD = os.getenv('POSTGRES_PASSWORD')
-DTABASE_HOST = os.getenv('POSTGRES_HOST', 'backbone-db')
+DTABASE_NAME = os.getenv('POSTGRES_DB', 'rfw')
+DTABASE_USER = os.getenv('POSTGRES_USER', 'postgres')
+DTABASE_PASSWORD = 'Mc110164'
+DTABASE_HOST = os.getenv('POSTGRES_HOST', 'localhost')
 DTABASE_PORT = os.getenv('POSTGRES_PORT', '5432')
 DATABASES = {
     'default': {
@@ -129,4 +130,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+# Static file
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'main/static')
+]
+
+# Media Folder Settings
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
