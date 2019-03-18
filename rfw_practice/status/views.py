@@ -13,6 +13,8 @@ urlpatterns = [
     path('<int:id>/delete/', StatusDeleteAPIView.as_view(), name='delete'),
 ]
 '''
+
+
 # what is APIView
 class StatusListSearchAPIView(APIView):
     permission_classes = []
@@ -24,7 +26,7 @@ class StatusListSearchAPIView(APIView):
         return Response(serializer.data)
 
 
-class StatusSearchAPIView(generics.ListAPIView):
+class StatusAPIView(generics.ListAPIView):
     permission_classes = []
     authentication_classes = []
     serializer_class = StatusSerializer
@@ -32,7 +34,16 @@ class StatusSearchAPIView(generics.ListAPIView):
     def get_queryset(self):
         qs = Status.objects.all()
         query = self.request.GET.get('q')
-        if query is not None :
+        if query is not None:
             qs = qs.filter(content__icontains=query)
         return qs
+
     
+class StatusCreateAPIView(generics.CreateAPIView):
+    permission_classes = []
+    authentication_classes = []
+    serializer_class = StatusSerializer
+    queryset = Status.objects.all()
+
+    # def perform_create(self, serializer):
+    #     serializer.save( user=self.request.user )
