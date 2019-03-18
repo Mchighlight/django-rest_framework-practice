@@ -47,10 +47,13 @@ class CustomSerializer(serializers.Serializer):
 '''
 
 # 沒有save function
+
+
 class StatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = Status
         fields = [
+            'id',
             'user',
             'content',
             'image'
@@ -66,6 +69,6 @@ class StatusSerializer(serializers.ModelSerializer):
         if content == "":
             content = None
         image = data.get("image", None)
-        if content is None and image is None :
+        if content is None and image is None:
             raise serializers.ValidationError("Content or image is required.")
         return data
