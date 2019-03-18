@@ -8,5 +8,6 @@ urlpatterns = [
     path('<int:id>/', views.StatusDetailAPIView.as_view(), name='detail'),
     path('<int:id>/update/', views.StatusUpdateAPIView.as_view(), name='update'),
     path('<int:id>/delete/', views.StatusDeleteAPIView.as_view(), name='delete'),
+    path('one_endpoint/', views.StatusOneAPIView.as_view(), name='one_end_point')
 ]
 
