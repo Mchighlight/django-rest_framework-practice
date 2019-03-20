@@ -33,4 +33,4 @@ local_*
 *.map
 celerybeat-schedule.db
 /rfw_practice/static
-/rfw_pracitce/media/
+/rfw_practice/media
