@@ -52,7 +52,7 @@ class StatusOneAPIView(
             #mixins.DestroyModelMixin,
             #mixins.RetreiveModelMixin
 ):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    #permission_classes = []
     #authentication_classes = [SessionAuthentication] #Oauth(third party authentication), JWT, Token
     serializer_class = StatusSerializer
 

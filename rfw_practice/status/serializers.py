@@ -1,7 +1,8 @@
 from rest_framework import serializers
 
-
+#from accounts.serializers import UserPublicSerializer
 from status.models import Status
+from accounts.user.serializers import  UserPublicSerializer
 
 ### Retrieve
 '''
@@ -49,16 +50,24 @@ class CustomSerializer(serializers.Serializer):
 # 沒有save function
 
 
+  
+
 class StatusSerializer(serializers.ModelSerializer):
+    uri = serializers.SerializerMethodField(read_only=True)
+    user =   UserPublicSerializer(read_only=True)
     class Meta:
         model = Status
         fields = [
             'id',
             'user',
+            'uri',
             'content',
             'image'
         ]
         read_only_fields = ['user'] # GET
+
+    def get_uri(self, obj):
+        return "/api/status/{id}".format(id=obj.id)
 
     def validate_content(self, value):
         if len(value) > 1000:
