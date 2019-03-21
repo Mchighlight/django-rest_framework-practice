@@ -4,6 +4,7 @@ from rest_framework import generics, mixins, permissions
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
+from accounts.permissions import IsOwnerOrReadOnly
 
 from status.models import Status
 from .serializers import StatusSerializer
@@ -21,7 +22,7 @@ class StatusAPIDetailView(
             mixins.DestroyModelMixin,
             generics.RetrieveAPIView
 ):
-    #permission_classes = []
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
     #authentication_classes = []
     serializer_class = StatusSerializer
     queryset = Status.objects.all()
@@ -51,7 +52,7 @@ class StatusOneAPIView(
             #mixins.DestroyModelMixin,
             #mixins.RetreiveModelMixin
 ):
-    #permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     #authentication_classes = [SessionAuthentication] #Oauth(third party authentication), JWT, Token
     serializer_class = StatusSerializer
 

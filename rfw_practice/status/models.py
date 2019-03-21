@@ -26,3 +26,9 @@ class Status( models.Model ):
     class Meta:
         verbose_name = 'StatusHHHH post' #admin最裡面的介面
         verbose_name_plural = 'Statuss post' #admin最外面的介面
+
+
+    # 外定義model
+    @property
+    def owner(self):
+        return self.user
