@@ -8,6 +8,7 @@ User = get_user_model()
 class UserDetailSerializer(serializers.ModelSerializer):
     uri = serializers.SerializerMethodField(read_only=True)
     status = serializers.SerializerMethodField(read_only=True)
+    statues = StatusInLineUserSerializer(source='status_set', many=True, read_only=True)
     class Meta:
         model = User
         fields = [
@@ -15,6 +16,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
             'username',
             'uri',
             'status',
+            'statues'
         ]
     def get_uri(self, obj):
         # add domain addrres

@@ -55,10 +55,12 @@ class CustomSerializer(serializers.Serializer):
 class StatusSerializer(serializers.ModelSerializer):
     uri = serializers.SerializerMethodField(read_only=True)
     user =   UserPublicSerializer(read_only=True)
+    #user_id = serializers.PrimaryKeyRelatedField(read_only=True, source='user')
+    #user = serializers.SlugRelatedField( read_only=True, slug_field='email')
     class Meta:
         model = Status
         fields = [
-            'id',
+            'user_id',
             'user',
             'uri',
             'content',
