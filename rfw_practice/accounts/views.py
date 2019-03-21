@@ -4,6 +4,7 @@ from rest_framework import permissions, generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework_jwt.settings import api_settings
+from .permissions import AnonPermissionOnly
 
 from .serializers import UserRegisterSerializer
 from .api.utils import jwt_response_payload_handler
@@ -14,7 +15,7 @@ jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 User = get_user_model()
 
 class AuthView(APIView):
-    permission_classes = []
+    permission_classes = [AnonPermissionOnly]
     def post(self, request, *args, **kwargs):
         print(request.user)
         #if request.user.is_authenticated:
@@ -40,7 +41,11 @@ class AuthView(APIView):
 class RegisterAPIView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserRegisterSerializer
-    permission_class = [permissions.AllowAny]
+    permission_class = [AnonPermissionOnly]
+
+
+    def get_serializer_context(self, *args, **kwargs):
+        return {"request":self.request}
 
 '''
 class RegisterAPIView(APIView):

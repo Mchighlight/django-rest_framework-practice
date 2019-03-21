@@ -3,10 +3,29 @@ from PIL import Image
 import json
 import requests
 
-AUTH_ENDPOINT = "http://127.0.0.1:8000/api/auth/"
+AUTH_ENDPOINT = "http://127.0.0.1:8000/api/auth/register/"
 AUTH_REFRESH_ENDPOINT = AUTH_ENDPOINT + "refresh/"
 ENDPOINT = "http://127.0.0.1:8000/api/status/"
 
+### Test register APi"""
+token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Ik1jaGlnaGxpZ2h0IiwiZXhwIjoxNTUzMTUwNDg3LCJlbWFpbCI6Ik1jaGlnaGxpZ2h0QGdtYWlsLmNvbSIsIm9yaWdfaWF0IjoxNTUzMTUwMTg3fQ.v9edXgdKiDHjPVVgPjEUU9q36n2fcWBPFGcdY4G4yKk"
+headers = {
+    'Content-Type': 'application/json',
+    'Authorization': "JWT " + token,
+}
+
+data = {
+    'username': 'cfe16',
+    'email': 'cfe16@gmail.com',
+    'password': '1234',
+    'password2': '1234'
+}
+
+r = requests.post(AUTH_ENDPOINT, data= json.dumps(data), headers=headers)
+token = r.json()
+print(token) 
+
+'''
 
 ### Test Jwt authentication
 post_header = {
@@ -29,6 +48,7 @@ headers = {
 post_data = json.dumps({"content": "Some randome shit"})
 posted_reponse = requests.post(ENDPOINT, data=post_data, headers=headers)
 print(posted_reponse.text)
+'''
 '''
 print(token)
 refresh_data = {

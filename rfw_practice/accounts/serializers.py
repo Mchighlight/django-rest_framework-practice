@@ -61,8 +61,9 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         return timezone.now() + expire_delta - datetime.timedelta(seconds=200)
 
     def get_token_response(self, obj): 
-        user = obj                
-        response = jwt_response_payload_handler(self.get_token(obj), user)
+        user = obj 
+        context = self.context               
+        response = jwt_response_payload_handler(self.get_token(obj), user, request=context['request'])
         return response 
 
     def create(self, validate_data):
@@ -71,5 +72,6 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             email = validate_data.get("email")
         )
         user_obj.set_password(validate_data.get('password'))
+        user_obj.is_active = False
         user_obj.save()
         return user_obj
