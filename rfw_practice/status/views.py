@@ -55,7 +55,11 @@ class StatusOneAPIView(
     #permission_classes = []
     #authentication_classes = [SessionAuthentication] #Oauth(third party authentication), JWT, Token
     serializer_class = StatusSerializer
+    search_fields = ('user__username', 'content')
+    ordering_fields = ('user__username', 'timestamp')
+    queryset = Status.objects.all()
 
+    '''因為用了pagination 所以不用使用get_queryset()
     def get_queryset(self):
         request = self.request
         print( request.user)
@@ -64,6 +68,7 @@ class StatusOneAPIView(
         if query is not None:
             qs = qs.filter(content__icontains=query)
         return qs
+    '''
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)

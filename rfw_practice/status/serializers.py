@@ -1,5 +1,5 @@
 from rest_framework import serializers
-
+from rest_framework.reverse import reverse
 #from accounts.serializers import UserPublicSerializer
 from status.models import Status
 from accounts.user.serializers import  UserPublicSerializer
@@ -67,7 +67,15 @@ class StatusSerializer(serializers.ModelSerializer):
         read_only_fields = ['user'] # GET
 
     def get_uri(self, obj):
-        return "/api/status/{id}".format(id=obj.id)
+        # add domain address
+        request = self.context.get('request')
+        user = obj.user
+        return UserPublicSerializer(user, read_only=True, context={"request": request}).data
+
+    def get_uri(self, obj):
+                # add domain address
+        request = self.context.get('request')
+        return reverse("api-status:detail", kwargs={'id':obj.id}, request=request)
 
     def validate_content(self, value):
         if len(value) > 1000:
