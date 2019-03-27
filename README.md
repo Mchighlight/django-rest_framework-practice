@@ -1,10 +1,40 @@
 # django-rest_framework-practice
 練習rest framework
 # About
-有界於不了解整個django frame work，決定專注重基本練習起
+完整練習django framework
 # Environment
 OS : Window home
+## Accomplished
+* Reqeust
+* Responses
+* Views
+* Genery vies
+* Renderers
+* Serializers
+* Serializer fields
+* Serializer relations
+* Validators
+* Autehntication
+* Permission JWT, Session, Token 未包含Oauth
+* Filterting
+* Pagination
+* Returning URLs
+* Status Codes
+* Tetsing
+## Not Included in this repo
+* Viewsets 已經學過
+* Version https://www.youtube.com/watch?v=jONV4Bfjq6g&feature=youtu.be
+* Parsers https://www.youtube.com/watch?v=3qoB3RVoOvA&feature=youtu.be
+* Caching 很少用
+* Content negotiation TODO:learn
+* Metadata TODO:learn
+* Schemas  TODO:learn
+* Format suffixes
+* Raw sql https://www.youtube.com/watch?v=YMtz7OSwIlE&feature=youtu.be
+## TODO:Learn
+* 
 # Lesson
+Udemy course
 * Status Model & App
 
 * Model Form for Validation
