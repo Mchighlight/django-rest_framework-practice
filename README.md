@@ -29,7 +29,7 @@ OS : Window home
 * Content negotiation TODO:learn
 * Metadata TODO:learn
 * Schemas  TODO:learn
-* Format suffixes
+* Format suffixes 很少用
 * Raw sql https://www.youtube.com/watch?v=YMtz7OSwIlE&feature=youtu.be
 # Lesson
 Udemy course
