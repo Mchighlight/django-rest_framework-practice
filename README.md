@@ -31,8 +31,6 @@ OS : Window home
 * Schemas  TODO:learn
 * Format suffixes
 * Raw sql https://www.youtube.com/watch?v=YMtz7OSwIlE&feature=youtu.be
-## TODO:Learn
-* 
 # Lesson
 Udemy course
 * Status Model & App
